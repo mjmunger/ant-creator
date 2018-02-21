@@ -190,7 +190,7 @@ class AppCreator
 
         foreach($questions as $key => $prompt) {
             printf("$prompt\n");
-            $input = fgets(STDIN);
+            $input = trim(fgets(STDIN));
             $data[$key] = $input;
         }
 
