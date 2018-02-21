@@ -33,7 +33,7 @@ class AntAppCreatorTest extends TestCase
 
     public function testCloneTemplate() {
         $targetDir = '/tmp/_phpant_template/';
-        $Creator = new AppCreator();
+        $Creator = new AppCreator(".");
         $Creator->getTemplate($targetDir);
 
         $targetFiles = [];
@@ -54,7 +54,7 @@ class AntAppCreatorTest extends TestCase
 
     public function testSubstitutions($data , $expectedCounts) {
         $targetDir = '/tmp/_phpant_template/';
-        $Creator = new AppCreator();
+        $Creator = new AppCreator(".");
         $Creator->getTemplate($targetDir);
         $Creator->findAndReplace($data);
 
@@ -79,7 +79,7 @@ class AntAppCreatorTest extends TestCase
      */
 
     public function testVerifyPrerequisites() {
-        $Creator = new AppCreator();
+        $Creator = new AppCreator(".");
         $this->assertTrue($Creator->verifyPrerequisites());
     }
 
@@ -114,7 +114,7 @@ class AntAppCreatorTest extends TestCase
      */
 
     public function testParseDirname($repoURI, $expectedDirName) {
-        $Creator = new AppCreator();
+        $Creator = new AppCreator(".");
         $targetDirName = $Creator->parseTargetDirName($repoURI);
         $this->assertSame($expectedDirName, $targetDirName);
     }

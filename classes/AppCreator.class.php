@@ -16,6 +16,7 @@ class AppCreator
      * @var string fileBuffer Holds the class data that will be written to file.
      */
     public $fileBuffer = '';
+    public $basePath   = '';
 
     private $appTemplateFileName        = 'ant-app-template.php';
     private $autoLoaderTemplateFileName = 'autoloader-template.php';
@@ -25,8 +26,9 @@ class AppCreator
     private $appTemplate         = null;
     private $autoLoaderTemplate  = null;
 
-    public function __construct()
+    public function __construct($basePath)
     {
+        $this->basePath           = (substr($basePath, -1) == '/' ? rtrim($basePath , '/') : $basePath);
         $this->appTemplate        = $this->repoDir . $this->appTemplateFileName;
         $this->autoLoaderTemplate = $this->repoDir . $this->autoLoaderTemplateFileName;
     }
@@ -96,12 +98,13 @@ class AppCreator
     public function checkoutTargetRepo($targetRepo) {
         $cmd    = "git clone $targetRepo 2>&1 ";
         $result = shell_exec($cmd);
-        $targetDir = dirname(__DIR__ ) . '/' . $this->parseTargetDirName($targetRepo);
+        $targetDir = $this->basePath . '/' . $this->parseTargetDirName($targetRepo);
         return $targetDir;
     }
 
     public function writeAppFile($targetDirectory) {
         $targetFilePath = $targetDirectory . '/app.php';
+        printf("Writing app file to: %s " . PHP_EOL, $targetFilePath);
         $fh = fopen($targetFilePath,'w');
         fwrite($fh,$this->fileBuffer);
         fclose($fh);
