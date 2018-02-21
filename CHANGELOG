@@ -1,0 +1,4 @@
+# v0.1.2
+
+- Fixed a bug where using "." as the specified app directory fails when compiled to a phar.
+- Added this changelog.
