@@ -109,11 +109,17 @@ class AntAppCreatorTest extends TestCase
     }
 
     /**
-     * @dataProvider providerAppData
-     * @covers createApp
+     * @dataProvider providerRepoURIs
+     * @covers parseTargetDirName
      */
 
-    public function testCreateApp($data , $expectedCounts) {
+    public function testParseDirname($repoURI, $expectedDirName) {
+        $Creator = new AppCreator();
+        $targetDirName = $Creator->parseTargetDirName($repoURI);
+        $this->assertSame($expectedDirName, $targetDirName);
+    }
 
+    public function providerRepoURIs() {
+        return  [ [ 'git@git.highpoweredhelp.com:michael/bugzy-work-timer.git', 'bugzy-work-timer' ] ];
     }
 }

@@ -96,11 +96,7 @@ class AppCreator
     public function checkoutTargetRepo($targetRepo) {
         $cmd    = "git clone $targetRepo 2>&1 ";
         $result = shell_exec($cmd);
-
-        $buffer = explode($targetRepo,'/');
-        $gitName = end($buffer);
-        $buffer = explode($gitName , '.');
-        $targetDir = __DIR__ . '/' . $buffer[0];
+        $targetDir = __DIR__ . '/' . $this->parseTargetDirName($targetRepo);
         return $targetDir;
     }
 
@@ -117,7 +113,7 @@ class AppCreator
         $cmd = 'publish .';
         $result = shell_exec($cmd);
     }
-    
+
     public function addAppFiles($targetDir) {
         chdir($targetDir);
         $cmd = 'git add *';
@@ -152,6 +148,14 @@ class AppCreator
         $this->addAppFiles($targetDir);
         $this->commitApp($targetDir);
         $this->pushApp($targetDir);
+    }
+
+    public function parseTargetDirName($repoURI) {
+        $buffer = explode('/', $repoURI);
+        $gitName = end($buffer);
+        $buffer = explode('.', $gitName );
+        $targetDir =  $buffer[0];
+        return $targetDir;
     }
 
     /**
