@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<app name="" namespace="">
+  <file>
+    <name>/home/michael/php/ant-creator/classes/AppCreator.class.php</name>
+    <hash>f2f4da9a3b68646525084721e7ff97ede74f4eb3</hash>
+  </file>
+  <file>
+    <name>/home/michael/php/ant-creator/classes/app.php</name>
+    <hash>da39a3ee5e6b4b0d3255bfef95601890afd80709</hash>
+  </file>
+</app>
