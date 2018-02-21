@@ -2,10 +2,40 @@
 <app name="" namespace="">
   <file>
     <name>/home/michael/php/ant-creator/classes/AppCreator.class.php</name>
-    <hash>f2f4da9a3b68646525084721e7ff97ede74f4eb3</hash>
+    <hash>3a075f0a5b4e4b6902e6fab5716b4bc75f4c4856</hash>
   </file>
   <file>
     <name>/home/michael/php/ant-creator/classes/app.php</name>
-    <hash>da39a3ee5e6b4b0d3255bfef95601890afd80709</hash>
+    <hash>f7542020974ac928a6c0f14c97578cd1eb461640</hash>
   </file>
+  <action>
+    <hook>cli-init</hook>
+    <function>declareMySelf</function>
+    <priority>50</priority>
+    <signature>53c84e4cc7f4ce458beb0a0f301e669cfbcda139</signature>
+  </action>
+  <action>
+    <hook>cli-command</hook>
+    <function>processCommand</function>
+    <priority>50</priority>
+    <signature>d44f7e3739770a1c297d1468100728eebf94a8da</signature>
+  </action>
+  <action>
+    <hook>header-inject-css</hook>
+    <function>injectCSS</function>
+    <priority>50</priority>
+    <signature>edf7113796fc955bc1c9a2eea99d9caff1d86249</signature>
+  </action>
+  <action>
+    <hook>footer-inject-js</hook>
+    <function>injectFooterJS</function>
+    <priority>50</priority>
+    <signature>ccafecab356be0c6bb311c2bf425a1f6a991abc2</signature>
+  </action>
+  <action>
+    <hook>header-inject-js</hook>
+    <function>injectHeaderJS</function>
+    <priority>50</priority>
+    <signature>2bbf6abfaac72aa922564be978f65497faf53a16</signature>
+  </action>
 </app>

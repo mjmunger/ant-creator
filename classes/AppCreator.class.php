@@ -107,7 +107,7 @@ class AppCreator
     public function writeAppFile($targetDirectory) {
         $targetFilePath = $targetDirectory . '/app.php';
         $fh = fopen($targetFilePath,'w');
-        fwrite($this->fileBuffer);
+        fwrite($fh,$this->fileBuffer);
         fclose($fh);
 
         return file_exists($targetFilePath);
@@ -117,6 +117,7 @@ class AppCreator
         $cmd = 'publish .';
         $result = shell_exec($cmd);
     }
+    
     public function addAppFiles($targetDir) {
         chdir($targetDir);
         $cmd = 'git add *';
