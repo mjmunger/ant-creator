@@ -96,7 +96,7 @@ class AppCreator
     public function checkoutTargetRepo($targetRepo) {
         $cmd    = "git clone $targetRepo 2>&1 ";
         $result = shell_exec($cmd);
-        $targetDir = __DIR__ . '/' . $this->parseTargetDirName($targetRepo);
+        $targetDir = dirname(__DIR__ ) . '/' . $this->parseTargetDirName($targetRepo);
         return $targetDir;
     }
 
@@ -110,25 +110,33 @@ class AppCreator
     }
     public function publishApp($targetDir) {
         chdir($targetDir);
-        $cmd = 'publish .';
+        echo "Signing and publishing app with your keys...";
+        $cmd = 'publish . 2>&1';
+        echo "[ OK ]" . PHP_EOL;
         $result = shell_exec($cmd);
     }
 
     public function addAppFiles($targetDir) {
         chdir($targetDir);
-        $cmd = 'git add *';
+        echo "Adding new files to repository...";
+        $cmd = 'git add * 2>&1';
+        echo "[ OK ]" . PHP_EOL;
         $result = shell_exec($cmd);
     }
 
     public function commitApp($targetDir) {
         chdir($targetDir);
-        $cmd = 'git commit -a -m\'auto published initial commit\'';
+        echo "Committing new files to repo...";
+        $cmd = 'git commit -a -m\'auto published initial commit\' 2>&1';
+        echo "[ OK ]" . PHP_EOL;
         $result = shell_exec($cmd);
     }
 
     public function pushApp($targetDir) {
         chdir($targetDir);
-        $cmd = 'git push';
+        echo "Pushing files to repo...";
+        $cmd = 'git push 2>&1';
+        echo "[ OK ]" . PHP_EOL;
         $result = shell_exec($cmd);
     }
 
